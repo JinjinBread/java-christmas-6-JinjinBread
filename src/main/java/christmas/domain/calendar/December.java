@@ -22,6 +22,10 @@ public class December {
         this.dayOfWeek = localDate.getDayOfWeek();
     }
 
+    public int calculateDateDifference(int date) {
+        return this.date - date;
+    }
+
     public boolean isSpecialDay() {
         return (dayOfWeek.equals(DayOfWeek.SUNDAY)) || (localDate.getDayOfMonth() == CHRISTMAS_DATE);
     }

@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface Discount {
 
+    int CHRISTMAS_DISCOUNT_EVENT_START_DATE = 1;
     int START_DISCOUNT_PRICE = 1_000;
     int ADD_DISCOUNT_PRICE = 100;
 
