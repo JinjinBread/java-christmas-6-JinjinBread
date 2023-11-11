@@ -17,7 +17,7 @@ public interface Discount {
 
     int SPECIAL_DISCOUNT_PRICE = 1_000;
 
-    int PRICE_CRITERIA = 120_000;
+    int GIVEAWAY_PRICE_CRITERIA = 120_000;
     List<Menu> GIVEAWAY_MENU = List.of(Menu.CHAMPAGNE);
     List<Integer> GIVEAWAY_MENU_COUNT = List.of(1);
 
