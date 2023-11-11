@@ -19,7 +19,7 @@ public class ChristmasDiscount implements Discount {
     public int calculateDiscountAmount() {
         if (december.isChristmasPeriod())
             return (START_DISCOUNT_PRICE +
-                    (december.calculateDateDifference(CHRISTMAS_DISCOUNT_EVENT_START_DATE) - 1) * ADD_DISCOUNT_PRICE);
+                    (december.calculateDateDifference(CHRISTMAS_DISCOUNT_EVENT_START_DATE)) * ADD_DISCOUNT_PRICE);
         return 0;
     }
 
