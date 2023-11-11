@@ -1,7 +1,7 @@
 package christmas.domain.discount;
 
+import christmas.domain.Category;
 import christmas.domain.Menu;
-import christmas.domain.calendar.December;
 
 import java.util.List;
 
@@ -12,6 +12,8 @@ public interface Discount {
     int ADD_DISCOUNT_PRICE = 100;
 
     int WEEK_DISCOUNT_PRICE = 2_023;
+    Category WEEKDAY_DISCOUNT_CATEGORY = Category.DESSERT;
+    Category WEEKEND_DISCOUNT_CATEGORY = Category.MAIN;
 
     int SPECIAL_DISCOUNT_PRICE = 1_000;
 

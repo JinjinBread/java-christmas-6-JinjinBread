@@ -22,6 +22,15 @@ public class Order {
         return totalOrderAmount;
     }
 
+    public int countCategoryMenu(Category category) {
+        int count = 0;
+        for (Menu menu : orderMenu.keySet()) {
+            if (Category.isCategoryMenu(menu, category))
+                count++;
+        }
+        return count;
+    }
+
     public boolean isOver(int number) {
         return number >= calculateTotalOrderAmount();
     }
