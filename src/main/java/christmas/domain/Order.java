@@ -26,7 +26,7 @@ public class Order {
         int count = 0;
         for (Menu menu : orderMenu.keySet()) {
             if (Category.isCategoryMenu(menu, category))
-                count++;
+                count += orderMenu.get(menu);
         }
         return count;
     }
