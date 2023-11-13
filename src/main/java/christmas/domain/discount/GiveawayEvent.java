@@ -1,43 +1,48 @@
 package christmas.domain.discount;
 
-import christmas.domain.Menu;
+import christmas.domain.GiveawayMenu;
 import christmas.domain.Order;
 
-import java.util.EnumMap;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class GiveawayEvent {
 
-    private static final int GIVEAWAY_PRICE_CRITERIA = 120_000;
-    private static final Map<Menu, Integer> GIVEAWAY_MENU = new EnumMap<>(Menu.class) {
-        {
-            put(Menu.CHAMPAGNE, 1);
-        }
-    };
-
     private final String name = "증정 이벤트";
-    private final Map<Menu, Integer> giveaway = new EnumMap<>(Menu.class);
     private final Order order;
+    private final List<GiveawayMenu> giveawayMenus = new ArrayList<>();
 
     public GiveawayEvent(Order order) {
         this.order = order;
-        initGiveaway(order);
+        initGiveawayMenu();
     }
 
-    private void initGiveaway(Order order) {
-        if (order.isOver(GIVEAWAY_PRICE_CRITERIA)) {
-            for (Menu menu : GIVEAWAY_MENU.keySet()) {
-                giveaway.put(menu, GIVEAWAY_MENU.get(menu));
-            }
-        }
-        giveaway.put(Menu.NONE, 0);
+    public String getName() {
+        return name;
+    }
+
+    public List<GiveawayMenu> getGiveawayMenus() {
+        return giveawayMenus;
+    }
+
+    public void initGiveawayMenu() {
+        if (order.isOver(120_000))
+            giveawayMenus.addAll(List.of(GiveawayMenu.values()));
     }
 
     public int calculateGiveawayPrice() {
         int giveawayPrice = 0;
-        for (Menu menu : giveaway.keySet()) {
-            giveawayPrice += menu.calculatePrice(giveaway.get(menu));
+        for (GiveawayMenu giveawayMenu : giveawayMenus) {
+            giveawayPrice += giveawayMenu.getGiveawayPrice();
         }
         return giveawayPrice;
     }
+
+    public void getGiveawayDetails(Map<String, Integer> totalBenefits) {
+        int giveawayPrice = calculateGiveawayPrice();
+        if (giveawayPrice != 0)
+            totalBenefits.put(name, giveawayPrice);
+    }
+
 }

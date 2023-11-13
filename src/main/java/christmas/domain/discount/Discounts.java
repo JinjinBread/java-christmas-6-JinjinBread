@@ -1,28 +1,13 @@
 package christmas.domain.discount;
 
-import christmas.domain.Order;
-import christmas.domain.Menu;
-import christmas.domain.calendar.December;
-
 import java.util.*;
 
 public class Discounts {
 
-    private final List<Discount> discounts = new ArrayList<>();
-    private final December december;
-    private final Order order;
+    private final List<Discount> discounts;
 
-    public Discounts(December december, Order order) {
-        this.december = december;
-        this.order = order;
-        initDiscounts();
-    }
-
-    private void initDiscounts() {
-        discounts.add(new ChristmasDiscount(december));
-        discounts.add(new WeekdayDiscount(december, order));
-        discounts.add(new WeekendDiscount(december, order));
-        discounts.add(new SpecialDiscount(december));
+    public Discounts(List<Discount> discounts) {
+        this.discounts = discounts;
     }
 
     public int calculateTotalDiscountAmount() {
@@ -33,8 +18,13 @@ public class Discounts {
         return totalDiscountAmount;
     }
 
+    public void getTotalDiscountDetails(Map<String, Integer> totalBenefits) {
 
-
-
+        for (Discount discount : discounts) {
+            int discountAmount = discount.calculateDiscountAmount();
+            if (discountAmount != 0)
+                totalBenefits.put(discount.getName(), discount.calculateDiscountAmount());
+        }
+    }
 
 }
