@@ -1,10 +1,13 @@
 package christmas.domain.discount;
 
+import christmas.domain.Category;
 import christmas.domain.Order;
 import christmas.domain.calendar.December;
 
 public class WeekendDiscount implements Discount {
 
+    private static final int WEEKEND_DISCOUNT_PRICE = 2_023;
+    private static final Category WEEKEND_DISCOUNT_CATEGORY = Category.MAIN;
 
     private final String name = "주말 할인";
     private final December december;
@@ -24,13 +27,9 @@ public class WeekendDiscount implements Discount {
     public int calculateDiscountAmount() {
         if (december.isWeekend()) {
             int mainCount = order.countCategoryMenu(WEEKEND_DISCOUNT_CATEGORY);
-            return mainCount * WEEK_DISCOUNT_PRICE;
+            return mainCount * WEEKEND_DISCOUNT_PRICE * -1;
         }
         return 0;
     }
 
-    @Override
-    public boolean isEventApplied() {
-        return calculateDiscountAmount() != 0;
-    }
 }

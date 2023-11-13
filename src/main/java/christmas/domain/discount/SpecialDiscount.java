@@ -4,6 +4,8 @@ import christmas.domain.calendar.December;
 
 public class SpecialDiscount implements Discount {
 
+    private static final int SPECIAL_DISCOUNT_PRICE = 1_000;
+
     private final String name = "특별 할인";
     private final December december;
 
@@ -19,12 +21,8 @@ public class SpecialDiscount implements Discount {
     @Override
     public int calculateDiscountAmount() {
         if (december.isSpecialDay())
-            return SPECIAL_DISCOUNT_PRICE;
+            return SPECIAL_DISCOUNT_PRICE * -1;
         return 0;
     }
 
-    @Override
-    public boolean isEventApplied() {
-        return calculateDiscountAmount() != 0;
-    }
 }
