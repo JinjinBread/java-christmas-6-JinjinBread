@@ -3,10 +3,13 @@ package christmas.view;
 import christmas.domain.GiveawayMenu;
 import christmas.domain.Menu;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 
 public class OutputView {
+
+    private static final DecimalFormat decimalFormat = new DecimalFormat("###,###");
 
     public void printIntroduce() {
         System.out.println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
@@ -27,7 +30,7 @@ public class OutputView {
 
     public void printTotalOrderAmount(int totalOrderAmount) {
         System.out.println("<할인 전 총주문 금액>");
-        System.out.println(totalOrderAmount + "원");
+        System.out.println(decimalFormat.format(totalOrderAmount) + "원");
         System.out.println();
     }
 
@@ -57,7 +60,8 @@ public class OutputView {
         }
 
         for (String benefit : benefits.keySet()) {
-            System.out.println(benefit + ": -" + benefits.get(benefit) + "원");
+            Integer benefitAmount = benefits.get(benefit);
+            System.out.println(benefit + ": " + decimalFormat.format(benefitAmount) + "원");
         }
 
         System.out.println();
@@ -65,13 +69,13 @@ public class OutputView {
 
     public void printTotalBenefitsAmount(int totalBenefitsAmount) {
         System.out.println("<총혜택 금액>");
-        System.out.println("-" + totalBenefitsAmount + "원");
+        System.out.println(decimalFormat.format(totalBenefitsAmount) + "원");
         System.out.println();
     }
 
     public void printDiscountedPayment(int discountedPayment) {
         System.out.println("<할인 후 예상 결제 금액>");
-        System.out.println(discountedPayment + "원");
+        System.out.println(decimalFormat.format(discountedPayment) + "원");
         System.out.println();
     }
 

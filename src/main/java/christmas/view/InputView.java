@@ -10,6 +10,7 @@ public class InputView {
     private static final String BLANK = " ";
     private static final String EMPTY = "";
     private static final String NUMERIC_REGX = "\\d+";
+    private static final String INVALID_INPUT_ERROR_MESSAGE = "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.";
 
     public int readDate() {
         try {
@@ -18,6 +19,7 @@ public class InputView {
             validateNumeric(input);
             return Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return readDate();
         }
     }
@@ -35,7 +37,7 @@ public class InputView {
     private void validateNumeric(String input) {
         Matcher matcher = Pattern.compile(NUMERIC_REGX).matcher(input);
         if (!matcher.matches())
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
+            throw new IllegalArgumentException(INVALID_INPUT_ERROR_MESSAGE);
     }
 
 }
