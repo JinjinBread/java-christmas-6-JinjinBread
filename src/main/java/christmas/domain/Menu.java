@@ -31,6 +31,13 @@ public enum Menu {
         return menuName;
     }
 
+    public static Menu getMenu(String menuName) {
+        return Stream.of(Menu.values())
+                .filter(menu -> menu.menuName.equals(menuName))
+                .findAny()
+                .orElse(NONE);
+    }
+
     public static boolean existMenu(String menuName) {
         return Stream.of(Menu.values())
                 .filter(menu -> !menu.equals(NONE))
