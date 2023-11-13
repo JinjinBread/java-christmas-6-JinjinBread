@@ -36,7 +36,7 @@ public class GiveawayEvent {
         for (GiveawayMenu giveawayMenu : giveawayMenus) {
             giveawayPrice += giveawayMenu.getGiveawayPrice();
         }
-        return giveawayPrice;
+        return giveawayPrice * -1;
     }
 
     public void getGiveawayDetails(Map<String, Integer> totalBenefits) {
