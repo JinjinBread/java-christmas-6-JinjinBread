@@ -5,16 +5,22 @@ import java.util.Map;
 public class Order {
 
     private final Map<Menu, Integer> orderMenu;
+    private final int totalOrderAmount;
 
     public Order(Map<Menu, Integer> orderMenu) {
         this.orderMenu = orderMenu;
+        this.totalOrderAmount = calculateTotalOrderAmount();
     }
 
     public Map<Menu, Integer> getOrderMenu() {
         return orderMenu;
     }
 
-    public int calculateTotalOrderAmount() {
+    public int getTotalOrderAmount() {
+        return totalOrderAmount;
+    }
+
+    private int calculateTotalOrderAmount() {
 
         int totalOrderAmount = 0;
 
@@ -26,6 +32,10 @@ public class Order {
         return totalOrderAmount;
     }
 
+    public int calculateDiscountedPayment(int totalDiscountAmount) {
+        return totalOrderAmount + totalDiscountAmount;
+    }
+
     public int countCategoryMenu(Category category) {
         int count = 0;
         for (Menu menu : orderMenu.keySet()) {
@@ -35,8 +45,8 @@ public class Order {
         return count;
     }
 
-    public boolean isOver(int number) {
-        return calculateTotalOrderAmount() >= number;
+    public boolean isMoreThan(int number) {
+        return totalOrderAmount >= number;
     }
 
 }

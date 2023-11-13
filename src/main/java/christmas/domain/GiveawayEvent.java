@@ -27,7 +27,7 @@ public class GiveawayEvent {
     }
 
     public void initGiveawayMenu() {
-        if (order.isOver(120_000))
+        if (order.isMoreThan(120_000))
             giveawayMenus.addAll(List.of(GiveawayMenu.values()));
     }
 
