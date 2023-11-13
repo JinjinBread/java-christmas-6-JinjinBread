@@ -10,6 +10,10 @@ public class Order {
         this.orderMenu = orderMenu;
     }
 
+    public Map<Menu, Integer> getOrderMenu() {
+        return orderMenu;
+    }
+
     public int calculateTotalOrderAmount() {
 
         int totalOrderAmount = 0;
@@ -32,7 +36,7 @@ public class Order {
     }
 
     public boolean isOver(int number) {
-        return number >= calculateTotalOrderAmount();
+        return calculateTotalOrderAmount() >= number;
     }
 
 }
