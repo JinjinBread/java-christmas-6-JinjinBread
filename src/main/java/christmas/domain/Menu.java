@@ -27,6 +27,10 @@ public enum Menu {
         this.price = price;
     }
 
+    public String getMenuName() {
+        return menuName;
+    }
+
     public static boolean existMenu(String menuName) {
         return Stream.of(Menu.values())
                 .filter(menu -> !menu.equals(NONE))
