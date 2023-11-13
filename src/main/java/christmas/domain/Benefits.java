@@ -1,7 +1,6 @@
 package christmas.domain;
 
 import christmas.domain.discount.Discounts;
-import christmas.domain.discount.GiveawayEvent;
 
 import java.util.LinkedHashMap;
 import java.util.List;
