@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import christmas.domain.benefit.Benefits;
 import christmas.domain.calendar.December;
 import christmas.domain.menu.Menu;
 import christmas.domain.order.Order;
@@ -23,6 +24,12 @@ public class PlannerController {
 
         outputView.printIntroduce();
 
+        December december = generateDecember();
+        Order order = generateOrder();
+        Benefits benefits = plannerService.generateBenefits(december, order);
+
+        outputView.printStartEventPreview(december.getDate());
+        givePreview(order, benefits);
     }
 
     private December generateDecember() {
@@ -87,5 +94,14 @@ public class PlannerController {
         orderMenu.put(Menu.getMenu(menuName), Integer.parseInt(menuCount));
     }
 
+    private void givePreview(Order order, Benefits benefits) {
+        outputView.printOrderMenu(order.getOrderMenu());
+        outputView.printTotalOrderAmount(order.calculateTotalOrderAmount());
+        outputView.printGiveawayMenu(benefits.getGiveawayMenus());
+        outputView.printBenefits(benefits.getBenefitsDetails());
+        outputView.printTotalBenefitsAmount(benefits.calculateTotalBenefitsAmount());
+        outputView.printDiscountedPayment(plannerService.calculateDiscountedPaymentAmount(order, benefits));
+        outputView.printBadge(plannerService.getEventBadge(benefits.calculateTotalBenefitsAmount()));
+    }
 
 }
