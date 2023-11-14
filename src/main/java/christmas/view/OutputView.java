@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.domain.benefit.Benefit;
 import christmas.domain.menu.GiveawayMenu;
 import christmas.domain.menu.Menu;
 
@@ -50,7 +51,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printBenefits(Map<String, Integer> benefits) {
+    public void printBenefits(Map<Benefit, Integer> benefits) {
         System.out.println("<혜택 내역>");
 
         if (benefits.isEmpty()) {
@@ -59,9 +60,9 @@ public class OutputView {
             return;
         }
 
-        for (String benefit : benefits.keySet()) {
+        for (Benefit benefit : benefits.keySet()) {
             Integer benefitAmount = benefits.get(benefit);
-            System.out.println(benefit + ": " + decimalFormat.format(benefitAmount) + "원");
+            System.out.println(benefit.getTitle() + ": " + decimalFormat.format(benefitAmount) + "원");
         }
 
         System.out.println();
