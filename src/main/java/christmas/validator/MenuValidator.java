@@ -13,8 +13,10 @@ public class MenuValidator {
     private static final String EMPTY = "";
     private static final String DELIMITER = "-";
     private static final String NUMERIC_REGX = "\\d+";
+    private static final int MAX_ORDER_COUNT = 20;
     private static final String INVALID_INPUT_MENU_ERROR_MESSAGE = "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.";
     private static final String ONLY_DRINK_ERROR_MESSAGE = "[ERROR] 음료만 주문 시, 주문할 수 없습니다. 다시 입력해 주세요.";
+    private static final String EXCEED_MAX_ORDER_COUNT_ERROR_MESSAGE = "[ERROR] 메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다.  다시 입력해 주세요.";
 
     public static void validateContainsEmpty(String[] inputs) {
         if (Arrays.asList(inputs).contains(EMPTY))
@@ -72,6 +74,20 @@ public class MenuValidator {
             categoryOfOrderMenu.add(Category.getCategoryByMenu(menu));
         }
         return categoryOfOrderMenu;
+    }
+
+    public static void validateMaxOrderCount(Map<Menu, Integer> orderMenu) {
+        if(isOverMaxOrderCount(orderMenu))
+            throw new IllegalArgumentException(EXCEED_MAX_ORDER_COUNT_ERROR_MESSAGE);
+    }
+
+    private static boolean isOverMaxOrderCount(Map<Menu, Integer> orderMenu) {
+        int totalOrderCount = 0;
+
+        for (Menu menu : orderMenu.keySet()) {
+            totalOrderCount += orderMenu.get(menu);
+        }
+        return totalOrderCount > MAX_ORDER_COUNT;
     }
 
 }

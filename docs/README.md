@@ -14,7 +14,7 @@
       - ✅ 존재하는 메뉴인지 판단하는 기능 Menu#existMenu(String menuName)
     - ✅ 중복 메뉴는 입력할 수 없다.
     - ✅ 음료만 주문할 수 없다.
-    - 메뉴는 한 번에 최대 20개까지 주문 가능하다.
+    - ✅ 메뉴는 한 번에 최대 20개까지 주문 가능하다.
 - ✅ 고객의 할인 전 총주문 금액을 구할 수 있다. Order#calculateTotalOrderAmount
 - ✅ 이벤트는 총주문 금액 10,000원 이상부터 적용된다. isOver10000
 - ✅ 고객은 크리스마스 할인을 받을 수 있다. ChristmasDiscount
