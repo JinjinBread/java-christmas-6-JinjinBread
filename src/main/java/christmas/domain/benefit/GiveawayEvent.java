@@ -18,8 +18,17 @@ public class GiveawayEvent extends Benefit {
         initGiveawayMenu();
     }
 
+    public void initGiveawayMenu() {
+        if (order.isMoreThan(120_000))
+            giveawayMenus.addAll(List.of(GiveawayMenu.values()));
+    }
+
     public String getTitle() {
         return title;
+    }
+
+    public List<GiveawayMenu> getGiveawayMenus() {
+        return giveawayMenus;
     }
 
     @Override
@@ -34,21 +43,6 @@ public class GiveawayEvent extends Benefit {
     @Override
     public boolean isGiveawayEvent() {
         return true;
-    }
-
-    public List<GiveawayMenu> getGiveawayMenus() {
-        return giveawayMenus;
-    }
-
-    public void initGiveawayMenu() {
-        if (order.isMoreThan(120_000))
-            giveawayMenus.addAll(List.of(GiveawayMenu.values()));
-    }
-
-    public void getGiveawayDetails(Map<String, Integer> totalBenefits) {
-        int giveawayPrice = calculateBenefitAmount();
-        if (giveawayPrice != 0)
-            totalBenefits.put(title, giveawayPrice);
     }
 
 }
