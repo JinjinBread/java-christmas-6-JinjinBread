@@ -4,7 +4,10 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class ApplicationTest extends NsTest {
     private static final String LINE_SEPARATOR = System.lineSeparator();
@@ -53,4 +56,15 @@ class ApplicationTest extends NsTest {
     protected void runMain() {
         Application.main(new String[]{});
     }
+
+    @ValueSource(strings = {"해산물파스타-2,레드와인-1,,,", "티본스테이크-1-", "크리스마스파스타2-초코케이크1"})
+    @ParameterizedTest
+    void 틀린_메뉴_입력_형식_예외_테스트(String orderMenu) {
+        assertSimpleTest(() -> {
+            runException("3", orderMenu);
+            assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        });
+    }
+
+    
 }
