@@ -1,12 +1,11 @@
 package christmas.domain.discount;
 
+import christmas.domain.benefit.SpecialDiscount;
 import christmas.domain.calendar.December;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class SpecialDiscountTest {
 
@@ -17,7 +16,7 @@ class SpecialDiscountTest {
         December december = new December(25);
         SpecialDiscount specialDiscount = new SpecialDiscount(december);
 
-        int discountAmount = specialDiscount.calculateDiscountAmount();
+        int discountAmount = specialDiscount.calculateBenefitAmount();
 
         assertThat(discountAmount).isEqualTo(1000);
     }

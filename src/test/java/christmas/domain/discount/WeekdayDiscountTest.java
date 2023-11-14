@@ -2,6 +2,7 @@ package christmas.domain.discount;
 
 import christmas.domain.Menu;
 import christmas.domain.Order;
+import christmas.domain.benefit.WeekdayDiscount;
 import christmas.domain.calendar.December;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class WeekdayDiscountTest {
 

@@ -1,12 +1,12 @@
-package christmas.domain.discount;
+package christmas.domain.benefit;
 
 import christmas.domain.calendar.December;
 
-public class SpecialDiscount implements Discount {
+public class SpecialDiscount extends Benefit {
 
     private static final int SPECIAL_DISCOUNT_PRICE = 1_000;
 
-    private final String name = "특별 할인";
+    private final String title = "특별 할인";
     private final December december;
 
     public SpecialDiscount(December december) {
@@ -14,15 +14,20 @@ public class SpecialDiscount implements Discount {
     }
 
     @Override
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
     @Override
-    public int calculateDiscountAmount() {
+    public int calculateBenefitAmount() {
         if (december.isSpecialDay())
             return SPECIAL_DISCOUNT_PRICE * -1;
         return 0;
+    }
+
+    @Override
+    public boolean isGiveawayEvent() {
+        return false;
     }
 
 }

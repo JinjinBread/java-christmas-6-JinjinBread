@@ -1,11 +1,11 @@
 package christmas.domain.discount;
 
+import christmas.domain.benefit.ChristmasDiscount;
 import christmas.domain.calendar.December;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class ChristmasDiscountTest {
 
@@ -16,7 +16,7 @@ class ChristmasDiscountTest {
         December december = new December(5);
         ChristmasDiscount christmasDiscount = new ChristmasDiscount(december);
 
-        int discountAmount = christmasDiscount.calculateDiscountAmount();
+        int discountAmount = christmasDiscount.calculateBenefitAmount();
 
         assertThat(discountAmount).isEqualTo(1400);
     }
@@ -28,7 +28,7 @@ class ChristmasDiscountTest {
         December december = new December(26);
         ChristmasDiscount christmasDiscount = new ChristmasDiscount(december);
 
-        int discountAmount = christmasDiscount.calculateDiscountAmount();
+        int discountAmount = christmasDiscount.calculateBenefitAmount();
 
         assertThat(discountAmount).isEqualTo(0);
     }

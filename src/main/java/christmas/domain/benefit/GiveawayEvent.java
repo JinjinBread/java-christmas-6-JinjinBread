@@ -1,4 +1,4 @@
-package christmas.domain;
+package christmas.domain.benefit;
 
 import christmas.domain.GiveawayMenu;
 import christmas.domain.Order;
@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class GiveawayEvent {
+public class GiveawayEvent extends Benefit {
 
-    private final String name = "증정 이벤트";
+    private final String title = "증정 이벤트";
     private final Order order;
     private final List<GiveawayMenu> giveawayMenus = new ArrayList<>();
 
@@ -18,8 +18,22 @@ public class GiveawayEvent {
         initGiveawayMenu();
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public int calculateBenefitAmount() {
+        int giveawayPrice = 0;
+        for (GiveawayMenu giveawayMenu : giveawayMenus) {
+            giveawayPrice += giveawayMenu.getGiveawayPrice();
+        }
+        return giveawayPrice * -1;
+    }
+
+    @Override
+    public boolean isGiveawayEvent() {
+        return true;
     }
 
     public List<GiveawayMenu> getGiveawayMenus() {
@@ -31,18 +45,10 @@ public class GiveawayEvent {
             giveawayMenus.addAll(List.of(GiveawayMenu.values()));
     }
 
-    public int calculateGiveawayPrice() {
-        int giveawayPrice = 0;
-        for (GiveawayMenu giveawayMenu : giveawayMenus) {
-            giveawayPrice += giveawayMenu.getGiveawayPrice();
-        }
-        return giveawayPrice * -1;
-    }
-
     public void getGiveawayDetails(Map<String, Integer> totalBenefits) {
-        int giveawayPrice = calculateGiveawayPrice();
+        int giveawayPrice = calculateBenefitAmount();
         if (giveawayPrice != 0)
-            totalBenefits.put(name, giveawayPrice);
+            totalBenefits.put(title, giveawayPrice);
     }
 
 }

@@ -1,15 +1,15 @@
-package christmas.domain.discount;
+package christmas.domain.benefit;
 
 import christmas.domain.Category;
 import christmas.domain.Order;
 import christmas.domain.calendar.December;
 
-public class WeekdayDiscount implements Discount {
+public class WeekdayDiscount extends Benefit {
 
     private static final int WEEKDAY_DISCOUNT_PRICE = 2_023;
     private static final Category WEEKDAY_DISCOUNT_CATEGORY = Category.DESSERT;
 
-    private final String name = "평일 할인";
+    private final String title = "평일 할인";
     private final December december;
     private final Order order;
 
@@ -19,17 +19,22 @@ public class WeekdayDiscount implements Discount {
     }
 
     @Override
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
     @Override
-    public int calculateDiscountAmount() {
+    public int calculateBenefitAmount() {
         if (december.isWeekday()) {
             int dessertCount = order.countCategoryMenu(WEEKDAY_DISCOUNT_CATEGORY);
             return dessertCount * WEEKDAY_DISCOUNT_PRICE * -1;
         }
         return 0;
+    }
+
+    @Override
+    public boolean isGiveawayEvent() {
+        return false;
     }
 
 }
