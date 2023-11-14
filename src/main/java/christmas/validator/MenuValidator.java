@@ -11,7 +11,6 @@ import java.util.Map;
 public class MenuValidator {
 
     private static final String EMPTY = "";
-    private static final String DELIMITER = "-";
     private static final String NUMERIC_REGX = "\\d+";
     private static final int MAX_ORDER_COUNT = 20;
     private static final String INVALID_INPUT_MENU_ERROR_MESSAGE = "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.";
@@ -23,8 +22,7 @@ public class MenuValidator {
             throw new IllegalArgumentException(INVALID_INPUT_MENU_ERROR_MESSAGE);
     }
 
-    public static void validateSplitSize(String orderMenu) {
-        String[] splitOrderMenu = orderMenu.split(DELIMITER);
+    public static void validateSplitSize(String[] splitOrderMenu) {
         if (splitOrderMenu.length != 2)
             throw new IllegalArgumentException(INVALID_INPUT_MENU_ERROR_MESSAGE);
     }

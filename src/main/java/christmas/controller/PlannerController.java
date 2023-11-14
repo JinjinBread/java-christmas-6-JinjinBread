@@ -8,10 +8,7 @@ import christmas.validator.MenuValidator;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PlannerController {
 
@@ -54,29 +51,41 @@ public class PlannerController {
         List<String> orderMenuNames = new ArrayList<>();
 
         String[] firstSplitStringOrderMenu = stringOrderMenu.split(FIRST_DELIMITER, -1);
-        MenuValidator.validateContainsEmpty(firstSplitStringOrderMenu);
+        validateMenuInputForm(firstSplitStringOrderMenu);
 
         for (String splitStringOrderMenu : firstSplitStringOrderMenu) {
-            MenuValidator.validateContainsEmpty(firstSplitStringOrderMenu);
-            MenuValidator.validateSplitSize(splitStringOrderMenu);
-
             String[] secondSplitStringOrderMenu = splitStringOrderMenu.split(SECOND_DELIMITER, -1);
-            String menuName = secondSplitStringOrderMenu[0];
-            String menuCount = secondSplitStringOrderMenu[1];
-
-            orderMenuNames.add(menuName);
-
-            MenuValidator.validateValidOrderMenu(menuName, menuCount);
-            orderMenu.put(Menu.getMenu(menuName), Integer.parseInt(menuCount));
+            validateDuplicateMenuName(orderMenuNames, secondSplitStringOrderMenu[0]);
+            putOrderMenu(secondSplitStringOrderMenu, orderMenu);
         }
 
-        MenuValidator.validateDuplicateMenu(orderMenuNames);
         MenuValidator.validateOnlyDrink(orderMenu);
         MenuValidator.validateMaxOrderCount(orderMenu);
-
         return orderMenu;
     }
 
+    private void validateMenuInputForm(String[] firstSplitStringOrderMenu) {
+        MenuValidator.validateContainsEmpty(firstSplitStringOrderMenu);
+
+        for (String splitStringOrderMenu : firstSplitStringOrderMenu) {
+            String[] secondSplitStringOrderMenu = splitStringOrderMenu.split(SECOND_DELIMITER, -1);
+            MenuValidator.validateContainsEmpty(secondSplitStringOrderMenu);
+            MenuValidator.validateSplitSize(secondSplitStringOrderMenu);
+        }
+    }
+
+    private void validateDuplicateMenuName(List<String> orderMenuNames, String menuName) {
+        orderMenuNames.add(menuName);
+        MenuValidator.validateDuplicateMenu(orderMenuNames);
+    }
+
+    private void putOrderMenu(String[] secondSplitStringOrderMenu, Map<Menu, Integer> orderMenu) {
+        String menuName = secondSplitStringOrderMenu[0];
+        String menuCount = secondSplitStringOrderMenu[1];
+
+        MenuValidator.validateValidOrderMenu(menuName, menuCount);
+        orderMenu.put(Menu.getMenu(menuName), Integer.parseInt(menuCount));
+    }
 
 
 }
