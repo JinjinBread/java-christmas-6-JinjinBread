@@ -3,6 +3,7 @@ package christmas.validator;
 import christmas.domain.menu.Menu;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class MenuValidator {
 
@@ -34,6 +35,12 @@ public class MenuValidator {
 
     private static void validatePositiveNumber(String menuCount) {
         if (!menuCount.matches(NUMERIC_REGX) && (Integer.parseInt(menuCount) < 1)) // Short-Circuit
+            throw new IllegalArgumentException(INVALID_INPUT_MENU_ERROR_MESSAGE);
+    }
+
+    public static void validateDuplicateMenu(List<String> menuNames) {
+        List<String> distinctMenuNames = menuNames.stream().distinct().toList();
+        if (menuNames.size() != distinctMenuNames.size())
             throw new IllegalArgumentException(INVALID_INPUT_MENU_ERROR_MESSAGE);
     }
 

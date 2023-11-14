@@ -8,7 +8,9 @@ import christmas.validator.MenuValidator;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 
 public class PlannerController {
@@ -49,9 +51,11 @@ public class PlannerController {
 
     private Map<Menu, Integer> convertStringToMap(String stringOrderMenu) {
         Map<Menu, Integer> orderMenu = new EnumMap<>(Menu.class);
+        List<String> orderMenuNames = new ArrayList<>();
 
         String[] firstSplitStringOrderMenu = stringOrderMenu.split(FIRST_DELIMITER, -1);
         MenuValidator.validateContainsEmpty(firstSplitStringOrderMenu);
+
         for (String splitStringOrderMenu : firstSplitStringOrderMenu) {
             MenuValidator.validateContainsEmpty(firstSplitStringOrderMenu);
             MenuValidator.validateSplitSize(splitStringOrderMenu);
@@ -60,10 +64,13 @@ public class PlannerController {
             String menuName = secondSplitStringOrderMenu[0];
             String menuCount = secondSplitStringOrderMenu[1];
 
+            orderMenuNames.add(menuName);
+
             MenuValidator.validateValidOrderMenu(menuName, menuCount);
             orderMenu.put(Menu.getMenu(menuName), Integer.parseInt(menuCount));
         }
-        // 중복 메뉴가 입력됐는지 검증
+
+        MenuValidator.validateDuplicateMenu(orderMenuNames);
         // 음료만 주문했는지 검증
         // 메뉴의 개수가 20개가 초과됐는지 검증
 
