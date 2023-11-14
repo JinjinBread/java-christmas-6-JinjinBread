@@ -92,4 +92,12 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 음료만_주문_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("3", "제로콜라-3,레드와인-2,샴페인-1");
+            assertThat(output()).contains("[ERROR] 음료만 주문 시, 주문할 수 없습니다. 다시 입력해 주세요.");
+        });
+    }
+
 }
