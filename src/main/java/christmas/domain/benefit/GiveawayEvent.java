@@ -1,11 +1,10 @@
 package christmas.domain.benefit;
 
-import christmas.domain.GiveawayMenu;
-import christmas.domain.Order;
+import christmas.domain.menu.GiveawayMenu;
+import christmas.domain.order.Order;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class GiveawayEvent extends Benefit {
 

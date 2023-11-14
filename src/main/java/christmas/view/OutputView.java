@@ -1,7 +1,7 @@
 package christmas.view;
 
-import christmas.domain.GiveawayMenu;
-import christmas.domain.Menu;
+import christmas.domain.menu.GiveawayMenu;
+import christmas.domain.menu.Menu;
 
 import java.text.DecimalFormat;
 import java.util.List;

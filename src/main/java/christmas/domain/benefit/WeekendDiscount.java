@@ -1,7 +1,7 @@
 package christmas.domain.benefit;
 
-import christmas.domain.Category;
-import christmas.domain.Order;
+import christmas.domain.menu.Category;
+import christmas.domain.order.Order;
 import christmas.domain.calendar.December;
 
 public class WeekendDiscount extends Benefit {

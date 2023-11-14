@@ -1,7 +1,7 @@
 package christmas.domain.discount;
 
-import christmas.domain.Menu;
-import christmas.domain.Order;
+import christmas.domain.menu.Menu;
+import christmas.domain.order.Order;
 import christmas.domain.benefit.WeekdayDiscount;
 import christmas.domain.calendar.December;
 import org.junit.jupiter.api.DisplayName;

@@ -1,6 +1,5 @@
-package christmas.domain;
+package christmas.domain.menu;
 
-import java.util.List;
 import java.util.stream.Stream;
 
 public enum Menu {

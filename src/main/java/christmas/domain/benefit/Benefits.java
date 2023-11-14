@@ -1,7 +1,7 @@
 package christmas.domain.benefit;
 
-import christmas.domain.GiveawayMenu;
-import christmas.domain.Order;
+import christmas.domain.menu.GiveawayMenu;
+import christmas.domain.order.Order;
 import christmas.domain.calendar.December;
 
 import java.util.*;
