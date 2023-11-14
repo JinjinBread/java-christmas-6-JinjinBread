@@ -1,12 +1,10 @@
 package christmas.domain.benefit;
 
+import christmas.domain.GiveawayMenu;
 import christmas.domain.Order;
 import christmas.domain.calendar.December;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Benefits {
 
@@ -61,10 +59,15 @@ public class Benefits {
         return totalDiscountAmount;
     }
 
-//    public List<GiveawayMenu> getGiveawayMenus() {
-//
-//        return giveawayEvent.getGiveawayMenus();
-//    }
+    public List<GiveawayMenu> getGiveawayMenus() {
+        for (Benefit benefit : benefits) {
+            if (benefit.isGiveawayEvent()) {
+                GiveawayEvent giveawayEvent = (GiveawayEvent) benefit;
+                return giveawayEvent.getGiveawayMenus();
+            }
+        }
+        return Collections.emptyList(); // 총 주문 금액이 10,000원이 넘지 않는 경우
+    }
 
     public Map<Benefit, Integer> getBenefitsDetails() {
         Map<Benefit, Integer> totalBenefits = new LinkedHashMap<>();
