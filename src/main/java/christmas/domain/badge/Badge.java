@@ -18,6 +18,10 @@ public enum Badge {
         this.standard = standard;
     }
 
+    public String getName() {
+        return name;
+    }
+
     private int getStandard() {
         return standard;
     }
@@ -25,7 +29,7 @@ public enum Badge {
     public static Badge getBadgeByTotalBenefitAmount(int totalBenefitAmount) {
         return Stream.of(values())
                 .sorted(Comparator.comparingInt(Badge::getStandard).reversed())
-                .filter(badge -> !badge.equals(NONE) && totalBenefitAmount >= badge.standard)
+                .filter(badge -> !badge.equals(NONE) && (totalBenefitAmount * -1) >= badge.standard)
                 .findFirst()
                 .orElse(NONE);
     }
