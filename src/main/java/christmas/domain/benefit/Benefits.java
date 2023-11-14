@@ -1,32 +1,15 @@
 package christmas.domain.benefit;
 
 import christmas.domain.menu.GiveawayMenu;
-import christmas.domain.order.Order;
-import christmas.domain.calendar.December;
 
 import java.util.*;
 
 public class Benefits {
 
-    private static final int THRESHOLD = 10_000;
-    private final December december;
-    private final Order order;
-    private final List<Benefit> benefits = new ArrayList<>();
+    private final List<Benefit> benefits;
 
-    public Benefits(December december, Order order) {
-        this.december = december;
-        this.order = order;
-        initBenefits();
-    }
-
-    private void initBenefits() {
-        if (order.calculateTotalOrderAmount() >= THRESHOLD) {
-            benefits.add(new ChristmasDiscount(december));
-            benefits.add(new WeekdayDiscount(december, order));
-            benefits.add(new WeekendDiscount(december, order));
-            benefits.add(new SpecialDiscount(december));
-            benefits.add(new GiveawayEvent(order));
-        }
+    public Benefits(List<Benefit> benefits) {
+        this.benefits = benefits;
     }
 
     public int calculateTotalDiscountAmount() {
