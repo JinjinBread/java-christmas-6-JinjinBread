@@ -84,4 +84,12 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 주문_메뉴_최대_개수_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("3", "양송이수프-5,시저샐러드-2,티본스테이크-3,크리스마스파스타-2,초코케이크-4,제로콜라-3,레드와인-2");
+            assertThat(output()).contains("[ERROR] 메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다.  다시 입력해 주세요.");
+        });
+    }
+
 }
