@@ -18,7 +18,7 @@ class OrderTest {
         orderMenu.put(Menu.CHOCOLATE_CAKE, 2);
         Order order = new Order(orderMenu);
 
-        int totalOrderAmount = order.calculateTotalOrderAmount();
+        int totalOrderAmount = order.getTotalOrderAmount();
 
         assertThat(totalOrderAmount).isEqualTo(84_000);
     }

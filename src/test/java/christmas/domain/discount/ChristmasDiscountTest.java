@@ -28,8 +28,8 @@ class ChristmasDiscountTest {
         December december = new December(26);
         ChristmasDiscount christmasDiscount = new ChristmasDiscount(december);
 
-        boolean eventApplied = christmasDiscount.isEventApplied();
+        int discountAmount = christmasDiscount.calculateDiscountAmount();
 
-        assertThat(eventApplied).isFalse();
+        assertThat(discountAmount).isEqualTo(0);
     }
 }
