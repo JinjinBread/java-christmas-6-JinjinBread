@@ -35,10 +35,6 @@ public class Order {
         return totalOrderAmount;
     }
 
-    public int calculateDiscountedPayment(int totalDiscountAmount) {
-        return totalOrderAmount + totalDiscountAmount;
-    }
-
     public int countCategoryMenu(Category category) {
         int count = 0;
         for (Menu menu : orderMenu.keySet()) {
