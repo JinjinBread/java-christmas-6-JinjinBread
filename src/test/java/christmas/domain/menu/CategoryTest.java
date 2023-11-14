@@ -1,7 +1,5 @@
-package christmas.domain;
+package christmas.domain.menu;
 
-import christmas.domain.menu.Category;
-import christmas.domain.menu.Menu;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
