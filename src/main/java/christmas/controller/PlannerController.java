@@ -71,7 +71,7 @@ public class PlannerController {
         }
 
         MenuValidator.validateDuplicateMenu(orderMenuNames);
-        // 음료만 주문했는지 검증
+        MenuValidator.validateOnlyDrink(orderMenu);
         // 메뉴의 개수가 20개가 초과됐는지 검증
 
         return orderMenu;
