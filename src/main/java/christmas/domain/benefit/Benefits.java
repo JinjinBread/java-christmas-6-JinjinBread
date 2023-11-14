@@ -41,13 +41,12 @@ public class Benefits {
         return Collections.emptyList(); // 총 주문 금액이 10,000원이 넘지 않는 경우
     }
 
-    public Map<Benefit, Integer> getBenefitsDetails() {
-        Map<Benefit, Integer> totalBenefits = new LinkedHashMap<>();
+    public List<String> getBenefitDetails() {
+        List<String> totalBenefits = new ArrayList<>();
 
         for (Benefit benefit : benefits) {
-            if (benefit.isApplied()) {
-                totalBenefits.put(benefit, benefit.calculateBenefitAmount());
-            }
+            if (benefit.isApplied())
+                totalBenefits.add(benefit.toString());
         }
 
         return totalBenefits;

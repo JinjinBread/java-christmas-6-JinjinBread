@@ -51,7 +51,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printBenefits(Map<Benefit, Integer> benefits) {
+    public void printBenefits(List<String> benefits) {
         System.out.println("<혜택 내역>");
 
         if (benefits.isEmpty()) {
@@ -60,9 +60,8 @@ public class OutputView {
             return;
         }
 
-        for (Benefit benefit : benefits.keySet()) {
-            Integer benefitAmount = benefits.get(benefit);
-            System.out.println(benefit.getTitle() + ": " + decimalFormat.format(benefitAmount) + "원");
+        for (String benefit : benefits) {
+            System.out.println(benefit);
         }
 
         System.out.println();

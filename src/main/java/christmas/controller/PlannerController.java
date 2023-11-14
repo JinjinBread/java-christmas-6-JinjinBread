@@ -98,7 +98,7 @@ public class PlannerController {
         outputView.printOrderMenu(order.getOrderMenu());
         outputView.printTotalOrderAmount(order.calculateTotalOrderAmount());
         outputView.printGiveawayMenu(benefits.getGiveawayMenus());
-        outputView.printBenefits(benefits.getBenefitsDetails());
+        outputView.printBenefits(benefits.getBenefitDetails());
         outputView.printTotalBenefitsAmount(benefits.calculateTotalBenefitsAmount());
         outputView.printDiscountedPayment(plannerService.calculateDiscountedPaymentAmount(order, benefits));
         outputView.printBadge(plannerService.getEventBadge(benefits.calculateTotalBenefitsAmount()));
