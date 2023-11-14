@@ -4,7 +4,9 @@ import christmas.domain.Order;
 import christmas.domain.calendar.December;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Benefits {
 
@@ -64,11 +66,16 @@ public class Benefits {
 //        return giveawayEvent.getGiveawayMenus();
 //    }
 
-//    public Map<String, Integer> getBenefitsDetails() {
-//        Map<String, Integer> totalBenefits = new LinkedHashMap<>();
-//        discounts.getTotalDiscountDetails(totalBenefits);
-//        giveawayEvent.getGiveawayDetails(totalBenefits);
-//        return totalBenefits;
-//    }
+    public Map<Benefit, Integer> getBenefitsDetails() {
+        Map<Benefit, Integer> totalBenefits = new LinkedHashMap<>();
+
+        for (Benefit benefit : benefits) {
+            if (benefit.isApplied()) {
+                totalBenefits.put(benefit, benefit.calculateBenefitAmount());
+            }
+        }
+
+        return totalBenefits;
+    }
 
 }
