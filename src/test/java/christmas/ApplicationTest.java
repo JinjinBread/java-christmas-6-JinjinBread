@@ -66,5 +66,12 @@ class ApplicationTest extends NsTest {
         });
     }
 
-    
+    @ValueSource(strings = {"크림파스타-2,사이다-1", "티본스테이크-1,바스크치즈케이크-1"})
+    @ParameterizedTest
+    void 존재하지_않는_메뉴_주문_예외_테스트(String orderMenu) {
+        assertSimpleTest(() -> {
+            runException("3", orderMenu);
+            assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        });
+    }
 }
