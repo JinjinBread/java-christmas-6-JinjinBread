@@ -55,13 +55,12 @@ public class PlannerController {
         for (String splitStringOrderMenu : firstSplitStringOrderMenu) {
             MenuValidator.validateContainsEmpty(firstSplitStringOrderMenu);
             MenuValidator.validateSplitSize(splitStringOrderMenu);
-            
+
             String[] secondSplitStringOrderMenu = splitStringOrderMenu.split(SECOND_DELIMITER, -1);
             String menuName = secondSplitStringOrderMenu[0];
             String menuCount = secondSplitStringOrderMenu[1];
 
-            // 유효한 메뉴인지 검증
-            // 메뉴의 개수가 숫자이며, 1 이상인지 검증
+            MenuValidator.validateValidOrderMenu(menuName, menuCount);
             orderMenu.put(Menu.getMenu(menuName), Integer.parseInt(menuCount));
         }
         // 중복 메뉴가 입력됐는지 검증
