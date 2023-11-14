@@ -48,7 +48,7 @@ public class Order {
         return count;
     }
 
-    public boolean isMoreThan(int number) {
+    public boolean isTotalOrderAmountMoreThan(int number) {
         return totalOrderAmount >= number;
     }
 

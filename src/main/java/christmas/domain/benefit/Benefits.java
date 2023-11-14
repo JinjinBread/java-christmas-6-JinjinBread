@@ -23,7 +23,7 @@ public class Benefits {
     }
 
     private void initBenefits() {
-        if (order.isMoreThan(10_000)) {
+        if (order.isTotalOrderAmountMoreThan(10_000)) {
             benefits.add(new ChristmasDiscount(december));
             benefits.add(new WeekdayDiscount(december, order));
             benefits.add(new WeekendDiscount(december, order));

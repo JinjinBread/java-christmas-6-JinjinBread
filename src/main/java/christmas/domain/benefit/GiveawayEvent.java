@@ -18,7 +18,7 @@ public class GiveawayEvent extends Benefit {
     }
 
     public void initGiveawayMenu() {
-        if (order.isMoreThan(120_000))
+        if (order.isTotalOrderAmountMoreThan(120_000))
             giveawayMenus.addAll(List.of(GiveawayMenu.values()));
     }
 
