@@ -74,4 +74,14 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         });
     }
+
+    @ValueSource(strings = {"양송이수프-0", "티본스테이크--1"})
+    @ParameterizedTest
+    void 주문_메뉴_개수_예외_테스트(String orderMenu) {
+        assertSimpleTest(() -> {
+            runException("3", orderMenu);
+            assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        });
+    }
+
 }
