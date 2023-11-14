@@ -8,22 +8,19 @@ import java.util.*;
 
 public class Benefits {
 
+    private static final int THRESHOLD = 10_000;
     private final December december;
     private final Order order;
     private final List<Benefit> benefits = new ArrayList<>();
-    private final int totalDiscountAmount;
-    private final int totalBenefitsAmount;
 
     public Benefits(December december, Order order) {
         this.december = december;
         this.order = order;
         initBenefits();
-        this.totalDiscountAmount = calculateTotalDiscountAmount();
-        this.totalBenefitsAmount = calculateTotalBenefitsAmount();
     }
 
     private void initBenefits() {
-        if (order.isTotalOrderAmountMoreThan(10_000)) {
+        if (order.calculateTotalOrderAmount() >= THRESHOLD) {
             benefits.add(new ChristmasDiscount(december));
             benefits.add(new WeekdayDiscount(december, order));
             benefits.add(new WeekendDiscount(december, order));
@@ -32,15 +29,7 @@ public class Benefits {
         }
     }
 
-    public int getTotalDiscountAmount() {
-        return totalDiscountAmount;
-    }
-
-    public int getTotalBenefitsAmount() {
-        return totalBenefitsAmount;
-    }
-
-    private int calculateTotalDiscountAmount() {
+    public int calculateTotalDiscountAmount() {
         int totalDiscountAmount = 0;
         for (Benefit benefit : benefits) {
             if (benefit.isGiveawayEvent()){
@@ -51,7 +40,7 @@ public class Benefits {
         return totalDiscountAmount;
     }
 
-    private int calculateTotalBenefitsAmount() {
+    public int calculateTotalBenefitsAmount() {
         int totalDiscountAmount = 0;
         for (Benefit benefit : benefits) {
             totalDiscountAmount += benefit.calculateBenefitAmount();

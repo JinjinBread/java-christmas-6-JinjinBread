@@ -8,22 +8,16 @@ import java.util.Map;
 public class Order {
 
     private final Map<Menu, Integer> orderMenu;
-    private final int totalOrderAmount;
 
     public Order(Map<Menu, Integer> orderMenu) {
         this.orderMenu = orderMenu;
-        this.totalOrderAmount = calculateTotalOrderAmount();
     }
 
     public Map<Menu, Integer> getOrderMenu() {
         return orderMenu;
     }
 
-    public int getTotalOrderAmount() {
-        return totalOrderAmount;
-    }
-
-    private int calculateTotalOrderAmount() {
+    public int calculateTotalOrderAmount() {
 
         int totalOrderAmount = 0;
 
@@ -42,10 +36,6 @@ public class Order {
                 count += orderMenu.get(menu);
         }
         return count;
-    }
-
-    public boolean isTotalOrderAmountMoreThan(int number) {
-        return totalOrderAmount >= number;
     }
 
 }

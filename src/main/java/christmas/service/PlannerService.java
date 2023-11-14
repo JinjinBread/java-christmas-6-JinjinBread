@@ -6,8 +6,8 @@ import christmas.domain.order.Order;
 public class PlannerService {
 
     public int calculateDiscountedPaymentAmount(Order order, Benefits benefits) {
-        int totalOrderAmount = order.getTotalOrderAmount();
-        int totalDiscountAmount = benefits.getTotalDiscountAmount();
+        int totalOrderAmount = order.calculateTotalOrderAmount();
+        int totalDiscountAmount = benefits.calculateTotalDiscountAmount();
         return totalDiscountAmount + totalDiscountAmount;
     }
 

@@ -22,10 +22,6 @@ public class December {
         this.dayOfWeek = localDate.getDayOfWeek();
     }
 
-    public int getDate() {
-        return date;
-    }
-
     public int calculateDateDifference(int date) {
         return this.date - date;
     }

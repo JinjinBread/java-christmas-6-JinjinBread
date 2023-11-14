@@ -8,6 +8,7 @@ import java.util.List;
 
 public class GiveawayEvent extends Benefit {
 
+    private static final int THRESHOLD = 120_000;
     private final String title = "증정 이벤트";
     private final Order order;
     private final List<GiveawayMenu> giveawayMenus = new ArrayList<>();
@@ -18,7 +19,7 @@ public class GiveawayEvent extends Benefit {
     }
 
     public void initGiveawayMenu() {
-        if (order.isTotalOrderAmountMoreThan(120_000))
+        if (order.calculateTotalOrderAmount() >= THRESHOLD)
             giveawayMenus.addAll(List.of(GiveawayMenu.values()));
     }
 
