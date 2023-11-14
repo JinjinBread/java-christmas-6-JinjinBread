@@ -1,5 +1,6 @@
 package christmas.service;
 
+import christmas.domain.badge.Badge;
 import christmas.domain.benefit.*;
 import christmas.domain.calendar.December;
 import christmas.domain.order.Order;
@@ -34,6 +35,10 @@ public class PlannerService {
         int totalOrderAmount = order.calculateTotalOrderAmount();
         int totalDiscountAmount = benefits.calculateTotalDiscountAmount();
         return totalOrderAmount + totalDiscountAmount;
+    }
+
+    public String getEventBadge(int totalBenefitAmount) {
+        return Badge.getBadgeByTotalBenefitAmount(totalBenefitAmount).getName();
     }
 
 }
