@@ -4,6 +4,7 @@ import christmas.domain.calendar.December;
 import christmas.domain.menu.Menu;
 import christmas.domain.order.Order;
 import christmas.service.PlannerService;
+import christmas.validator.MenuValidator;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 
@@ -50,12 +51,11 @@ public class PlannerController {
         Map<Menu, Integer> orderMenu = new EnumMap<>(Menu.class);
 
         String[] firstSplitStringOrderMenu = stringOrderMenu.split(FIRST_DELIMITER, -1);
-        // 메뉴 형식 검증
-        // Empty가 포함돼 있으면 error (e.g. 해산물파스타-2,레드와인-1,,,)
+        MenuValidator.validateContainsEmpty(firstSplitStringOrderMenu);
         for (String splitStringOrderMenu : firstSplitStringOrderMenu) {
-            // 메뉴 형식 검증
-            // 1. SECOND_DELIMITER로 나눠서 나온 String 배열의 size가 2가 아니거나 (e.g. 해산물파스타2)
-            // 2. Empty가 포함돼 있으면 error (e.g. 해산물파스타-2----)
+            MenuValidator.validateContainsEmpty(firstSplitStringOrderMenu);
+            MenuValidator.validateSplitSize(splitStringOrderMenu);
+            
             String[] secondSplitStringOrderMenu = splitStringOrderMenu.split(SECOND_DELIMITER, -1);
             String menuName = secondSplitStringOrderMenu[0];
             String menuCount = secondSplitStringOrderMenu[1];
