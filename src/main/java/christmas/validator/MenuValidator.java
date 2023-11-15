@@ -38,7 +38,7 @@ public class MenuValidator {
     }
 
     private static void validatePositiveNumber(String menuCount) {
-        if (!menuCount.matches(NUMERIC_REGX) || (Integer.parseInt(menuCount) < 1)) // Short-Circuit
+        if (!menuCount.matches(NUMERIC_REGX) || (Integer.parseInt(menuCount) < 1))
             throw new IllegalArgumentException(INVALID_INPUT_MENU_ERROR_MESSAGE);
     }
 
